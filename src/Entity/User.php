@@ -19,9 +19,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    #[Assert\Regex(pattern: '/^[a-zA-Z0-9\s]+$/u', message: 'Le titre ne doit pas contenir des caractères spéciaux.')]
    
-#[Assert\NotBlank(message:"email requis")]
+   
+    #[Assert\NotBlank(message:"email requis")]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 

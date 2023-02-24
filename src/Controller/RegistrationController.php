@@ -76,12 +76,7 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-    #[Route('/reg', name: 'app_r')]
-    public function regist(){
-        return $this->render('home/reg.html.twig', [
-            'form' => '',
-        ]);
-    }
+  
 }
 
 

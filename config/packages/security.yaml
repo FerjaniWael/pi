@@ -1,4 +1,6 @@
 security:
+
+
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -33,7 +35,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/user, roles: ROLE_ADMIN}
+       
         - { path: ^/home, roles: ROLE_USER }
+
 
 when@test:
     security:

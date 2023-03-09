@@ -51,11 +51,17 @@
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="uploads/images/{{app.user.imageFilename}}" alt="#" /></div>
+              {% block image %}          
+             <img class="img-responsive" style="max-width:80px ;" src="{{ asset('uploads/images/' ~ app.user.imageFilename) }}" alt="#" />
+                        
+                        {% endblock %}
+                        {% block email %}
                         <div class="user_info">
-                           <h6>{{app.user.email}}</h6>
+
+                           <h6>{{app.user.nom}} {{app.user.prenom}}</h6>
                            <p><span class="online_animation"></span> Online</p>
                         </div>
+                       
                      </div>
                   </div>
                </div>
@@ -63,7 +69,8 @@
                   <h4>General</h4>
                   <ul class="list-unstyled components">
                      <li class="active">
-                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                                             <li><a href="{{asset('user')}}"><i class="fa fa-table purple_color2"></i> <span>Utilisateurs</span></a></li>
+
                         <ul class="collapse list-unstyled" id="dashboard">
                            <li>
                               <a href="dashboard.html">> <span>Default Dashboard</span></a>
@@ -73,50 +80,39 @@
                            </li>
                         </ul>
                      </li>
-                      
                     
+
+                     <li><a href="{{asset('logout')}}"><i class="fa fa-table purple_color2"></i> <span>Deconnexion</span></a></li>
+                     <li>
+                        <ul class="collapse list-unstyled" id="apps">
+                           <li><a href="email.html">> <span>Email</span></a></li>
+                           <li><a href="calendar.html">> <span>Calendar</span></a></li>
+                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
+                        </ul>
+                     </li>
                     
+                     <li class="active">
+                        <ul class="collapse list-unstyled" id="additional_page">
+                          
+                              <a href="404_error.html">> <span>404 Error</span></a>
+                           </li>
+                        </ul>
+                     </li>
                     
-                     <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-                     <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                   </ul>
                </div>
             </nav>
+             {% endblock %}
             <!-- end sidebar -->
             <!-- right content -->
             <div id="content">
                <!-- topbar -->
                <div class="topbar">
-                  <nav class="navbar navbar-expand-lg navbar-light">
-                     <div class="full">
-                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                           <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
-                        </div>
-                        <div class="right_topbar">
-                           <div class="icon_info">
-                              <ul>
-                                 <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                 <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                 <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                              </ul>
-                              <ul class="user_profile_dd">
-                                 <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
-                                    <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="profile.html">My Profile</a>
-                                       <a class="dropdown-item" href="settings.html">Settings</a>
-                                       <a class="dropdown-item" href="help.html">Help</a>
-                                       <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                  </nav>
+
                </div>
+
+                
+
                <!-- end topbar -->
                <!-- dashboard inner -->
                {% block body %}

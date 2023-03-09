@@ -15,6 +15,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
+use Gregwar\CaptchaBundle\captcha;
+
 
 class RegistrationController extends AbstractController
 {
@@ -26,13 +32,14 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager,Security $security): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setIsVerified(false);
             // encode the plain password
             $imageFile = $form->get('imageFile')->getData();
 
@@ -58,6 +65,7 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+            
 
             // generate a signed url and email it to the user
           /*  $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
@@ -68,20 +76,20 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email*/
+             
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
+        }
+        else {
+            $errors = $form->getErrors(true, false); // get all errors
+            dump($errors);
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
-    #[Route('/reg', name: 'app_r')]
-    public function regist(){
-        return $this->render('home/reg.html.twig', [
-            'form' => '',
-        ]);
-    }
+  
 }
 
 

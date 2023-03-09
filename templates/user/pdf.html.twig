@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.email }}</title>
+</head>
+<body>
+    <h1>Certificat de participation</h1>
+ <p>Ce certificat atteste que 
+            
+                {% for role in user.roles %}
+            {{ role }}
+        {% endfor %}
+            
+            a participé au tournoi {{ user.id }} organisé par notre association.</p>
+           
+    <p>Signature : ____________________________</p>    
+</body>
+</html>

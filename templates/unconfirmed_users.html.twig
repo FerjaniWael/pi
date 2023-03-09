@@ -1,0 +1,39 @@
+{% extends 'back.html.twig' %}
+{% block email %}
+{% endblock %}
+{% block image %}
+{% endblock %}
+{% block body %}
+    <h1>Unconfirmed Users</h1>
+
+    {% if users|length == 0 %}
+        <p>No unconfirmed users.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <form method="post" action="{{ path('app_admin_confirm_user', {'id': user.id}) }}">
+                                <button type="submit">Confirm</button>
+                               
+                                </form>
+                            <form method="post" action="{{ path('app_admin_reject_user', {'id': user.id}) }}">
+                                <button type="submit">Reject</button> 
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

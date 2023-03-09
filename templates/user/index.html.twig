@@ -11,6 +11,10 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
+<<<<<<< HEAD
+=======
+                <th>IsVerified</th>
+>>>>>>> 59310678bd5113a698cb691f59a5580308d42dc6
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +24,10 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+<<<<<<< HEAD
+=======
+                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+>>>>>>> 59310678bd5113a698cb691f59a5580308d42dc6
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}"><button type="button" >show</button></a>
                     <a href="{{ path('app_user_edit', {'id': user.id}) }}"> <button type="button" class="btn btn-primary">edit</button></a>

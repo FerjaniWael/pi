@@ -55,6 +55,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Profile picture',
                 'required' => false,
             ])
+<<<<<<< HEAD
             ->add('isVerified', CheckboxType::class, [
                 'label' => 'I am an admin and confirm this account',
                 'mapped' => false,
@@ -66,6 +67,9 @@ class RegistrationFormType extends AbstractType
                 'action_name' => 'register',
                
             ]);
+=======
+           
+>>>>>>> 59310678bd5113a698cb691f59a5580308d42dc6
 
         
     }

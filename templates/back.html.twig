@@ -51,11 +51,16 @@
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
+<<<<<<< HEAD
               {% block image %}          
              <img class="img-responsive" style="max-width:80px ;" src="{{ asset('uploads/images/' ~ app.user.imageFilename) }}" alt="#" />
                         
                         {% endblock %}
                         {% block email %}
+=======
+                        
+                        <img class="img-responsive" style="max-width:50px ;" src="/uploads/images/{{app.user.imageFilename}}" alt="#" />
+>>>>>>> 59310678bd5113a698cb691f59a5580308d42dc6
                         <div class="user_info">
 
                            <h6>{{app.user.nom}} {{app.user.prenom}}</h6>
